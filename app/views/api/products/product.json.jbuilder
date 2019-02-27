@@ -1,1 +1,1 @@
-json.product @product
+json.products @product
