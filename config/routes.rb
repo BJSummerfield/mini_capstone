@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   #   get "/photos" => "photos#index"
   # end
   namespace :api do
-    get "/products" => "products#product"
+    get "/product" => "products#id"
     get "/all_products" => "products#all_products"
+    get "/product/:id" => "products#id"
+    post 'body_params' => 'products#guess'
   end
 end
