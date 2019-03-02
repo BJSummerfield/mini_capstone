@@ -6,7 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 9.times do 
- product1 = Product.new(name: FFaker::Product.product_name,
+ product1 = Product.new(
+
+          name: FFaker::Product.product_name,
             
             image_url: FFaker::Internet.http_url,
             description: FFaker::Product.product)

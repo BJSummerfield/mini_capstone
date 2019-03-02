@@ -1,37 +1,42 @@
 class Api::ProductsController < ApplicationController
-  def product
-    @product = [Product.first]
-    render 'product.json.jbuilder'
+  
+  def index
+    @product = Product.all
+    render 'index.json.jbuilder'
   end
 
-  def all_products
-    @all_products = Product.all
-    render 'all_products.json.jbuilder'
+  def show
+    the_id = params[:id]
+    @product = Product.find_by(id: the_id)
+    render 'show.json.jbuilder'
   end
 
-  def id
-    idnum = params[:id]
-    @product = Product.find_by! id: idnum
-    render 'productid.json.jbuilder'
+  def create
+    @product = Product.new(
+      name: params[:input_name],
+      description: params[:input_description],
+      price: params[:input_price],
+      image_url: params[:input_image_url]
+      )
+    render 'show.json.jbuilder'
   end
 
-  @@answer = Array(1..20)
-  @@range = @@answer[rand(@@answer.last)]
-  def guess
-    @message = "Guess a number #{@@answer.first} - #{@@answer.last}"
-    if
-      @guess = params[:guess]
-      guess = @guess.to_i
-      if guess < @@answer.first || guess > @@answer.last
-        @message = "Please guess a number in the range of #{@@answer.first} - #{@@answer.last}"
-      elsif guess == @@range
-        @win = "You win!"
-      elsif guess > @@range
-        @win = "guess lower"
-      elsif guess < @@range
-        @win = "guess higher"
-      end
-    end
-    render 'guess.json.jbuilder' 
+  def update
+    the_id = params[:id]
+    @product = Product.find_by(id: the_id)
+    @product.update(
+      name: params[:input_name],
+      description: params[:input_description],
+      price: params[:input_price],
+      image_url: params[:input_image_url]
+      )
+    render 'show.json.jbuilder'
+  end
+
+  def destroy
+    the_id  = params[:id]
+    @product = Product.find_by(id: the_id)
+    @product.destroy
+    reder 'show.json.jbuilder'
   end
 end

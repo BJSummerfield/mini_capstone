@@ -1,1 +1,0 @@
-json.all_products @all_products
