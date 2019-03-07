@@ -5,13 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-9.times do 
- product1 = Product.new(
+# 9.times do 
+#  product1 = Product.new(
 
-          name: FFaker::Product.product_name,
+#           name: FFaker::Product.product_name,
             
-            image_url: FFaker::Internet.http_url,
-            description: FFaker::Product.product)
- product1.price = rand(1..100)
- product1.save
-end
+#             image_url: FFaker::Internet.http_url,
+#             description: FFaker::Product.product)
+#  product1.price = rand(1..100)
+#  product1.save
+# end
+
+# 20.times do |i|
+#   item = Product.find_by(id: i)
+#   if item != nil
+#     item.instock = true
+#     item.save
+#   end
+# end
