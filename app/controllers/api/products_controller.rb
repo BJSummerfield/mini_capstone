@@ -19,8 +19,11 @@ class Api::ProductsController < ApplicationController
       image_url: params[:image_url],
       instock: params[:instock]
       )
-    @product.save
-    render 'show.json.jbuilder'
+    if @product.save
+      render 'show.json.jbuilder'
+    else
+      render 'errors.json.jbuilder', status: :unprocessible_entity
+    end
   end
 
   def update
@@ -33,7 +36,11 @@ class Api::ProductsController < ApplicationController
       image_url: params[:image_url] || @product.image_url,
       instock: params[:instock] || @product.instock
       )
-    render 'show.json.jbuilder'
+    if @product.save
+      render 'show.json.jbuilder' 
+    else 
+      render 'errors.json.jbuilder', status: :unprocessible_entity
+    end
   end
 
   def destroy
