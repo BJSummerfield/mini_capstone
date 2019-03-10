@@ -1,7 +1,10 @@
 class Api::ProductsController < ApplicationController
   
   def index
-    @product = Product.all
+    @products = Product.all
+    @products = Product.where("name iLIKE ?", "%#{params[:search]}%") if params[:search]
+    @products = Product.where("price < 50") if params[:discount] == "true"
+    @products = @products.order(params[:sort] => params[:sort_order]) if params[:sort] && params[:sort_order]
     render 'index.json.jbuilder'
   end
 
@@ -29,14 +32,13 @@ class Api::ProductsController < ApplicationController
   def update
     the_id = params[:id]
     @product = Product.find_by(id: the_id)
-    @product.update(
+    if @product.update(
       name: params[:name] || @product.name,
       description: params[:description] || @product.description,
       price: params[:price] || @product.price,
       image_url: params[:image_url] || @product.image_url,
       instock: params[:instock] || @product.instock
       )
-    if @product.save
       render 'show.json.jbuilder' 
     else 
       render 'errors.json.jbuilder', status: :unprocessible_entity
