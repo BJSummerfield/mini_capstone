@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  belongs_to :supplier
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :price, presence: true
@@ -15,6 +16,10 @@ class Product < ApplicationRecord
   def total
     taxes = price * 1.09
     '%.2f' % taxes
+  end
+  
+  def images
+  ImageUrl.where(product_id: id)
   end
 
 end

@@ -18,5 +18,11 @@ Rails.application.routes.draw do
     post '/suppliers' => 'suppliers#create'
     patch '/suppliers/:id' => 'suppliers#update'
     delete '/suppliers/:id' => 'suppliers#destroy'
+
+    get '/image_url' => 'image_url#index'
+    get '/image_url/:id' => 'image_url#show'
+    post '/image_url' => 'image_url#create'
+    patch '/image_url/:id' => 'image_url#update'
+    delete '/image_url/:id' => 'image_url#destroy'
   end
 end
