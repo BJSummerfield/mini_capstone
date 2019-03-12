@@ -6,3 +6,4 @@ json.tax product.total
 json.image_url product.image_url
 json.discounted product.is_discounted?
 json.instock product.instock
+json.supplier_id product.supplier_id
