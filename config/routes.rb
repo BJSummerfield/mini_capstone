@@ -26,5 +26,7 @@ Rails.application.routes.draw do
     delete '/image_url/:id' => 'image_url#destroy'
 
     post 'users' => "users#create"
+
+    post "/sessions" => "sessions#create"
   end
 end
