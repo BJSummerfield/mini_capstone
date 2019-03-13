@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :supplier
+  has_many :image_url
+
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :price, presence: true
@@ -18,8 +20,8 @@ class Product < ApplicationRecord
     '%.2f' % taxes
   end
   
-  def images
-  ImageUrl.where(product_id: id)
-  end
+  # def images
+  # ImageUrl.where(product_id: id)
+  # end
 
 end

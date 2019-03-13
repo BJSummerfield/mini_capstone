@@ -59,16 +59,10 @@
 # image1 = ImageUrl.new(url: "https://cdn.shopify.com/s/files/1/1241/2144/products/METRONOME-TUNER-BK-1_2048x.jpg?v=1505864106")
 # image1.save
 
-images = ImageUrl.all
-array =[]
-products = Product.all
-  products.each do |product|
-    array << product.id
-  end
-  p array
-i = 0
-images.each do |image|
-  image.product_id = array[i]
-  i+=1
-  image.save
-end
+# products = Product.all
+# products.each do |product|
+#   image = ImageUrl.new(
+#     url: product.image_url,
+#     product_id: product.id)
+#   image.save
+# end

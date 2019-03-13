@@ -24,5 +24,7 @@ Rails.application.routes.draw do
     post '/image_url' => 'image_url#create'
     patch '/image_url/:id' => 'image_url#update'
     delete '/image_url/:id' => 'image_url#destroy'
+
+    post 'users' => "users#create"
   end
 end
