@@ -1,3 +1,4 @@
+json.user current_user
 json.id product.id
 json.name product.name
 json.description product.description
