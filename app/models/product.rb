@@ -10,7 +10,6 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :image_url, presence: true
 
-  
   def is_discounted?
     price < 10
   end
@@ -19,9 +18,4 @@ class Product < ApplicationRecord
     taxes = price * 1.09
     '%.2f' % taxes
   end
-  
-  # def images
-  # ImageUrl.where(product_id: id)
-  # end
-
 end
