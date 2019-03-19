@@ -7,6 +7,7 @@ class Api::ProductsController < ApplicationController
     @products = Product.where("name iLIKE ?", "%#{params[:search]}%") if params[:search]
     @products = Product.where("price < 50") if params[:discount] == "true"
     @products = @products.order(params[:sort] => params[:sort_order]) if params[:sort] && params[:sort_order]
+    @products = Category.find_by(name: params[:category]).products if params[:category]
     render 'index.json.jbuilder'
   end
 
