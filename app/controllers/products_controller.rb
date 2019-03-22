@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    
     @product = Product.new(
       name: params[:name],
       description: params[:description],
@@ -22,6 +23,12 @@ class ProductsController < ApplicationController
       instock: true
       )
     @product.save!
+    
+    image = ImageUrl.new(
+      url: params[:url],
+      product_id: @product.id
+      )
+    image.save
     redirect_to "/products/#{@product.id}"
   end
 end
