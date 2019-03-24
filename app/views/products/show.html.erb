@@ -6,3 +6,5 @@
 <p>description: <%= @product.description %></p>
  <p>supplier: <%= @product.supplier[:name] %></p>
 <img src="<%= @product.image_url[0][:url]%>" width = "100">
+<br>
+<a href="/products/<%= @product.id %>" data-method="delete" rel="nofollow">Delete Product</a>

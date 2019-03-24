@@ -1,0 +1,20 @@
+<h2>Edit Page</h2>
+
+<form action="/products/<%= @product.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  name: <input type="text" name="name" value="<%= @product.name %>">
+  price: <input type="text" name="price" value="<%= @product.price %>">
+  description: <input type="text" name="description" value="<%= @product.description %>">
+  <label for="supplier_id">Supplier:</label>
+  <select name="supplier_id">
+    <option value="">--Please choose an option--</option>
+      <% s = Supplier.all %>
+      <% s.each do |sup| %>
+        <option value="<%= sup.id %>"><%= sup.name %></option>
+      <% end %>
+  </select>
+  image: <input type="text" name="image_url" value="<%= @product.image_url[0][:url] %>">
+
+
+  <input type="submit" value="Update Product">
+</form>

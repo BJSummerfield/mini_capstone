@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    
     @product = Product.new(
       name: params[:name],
       description: params[:description],
@@ -31,4 +30,30 @@ class ProductsController < ApplicationController
     image.save
     redirect_to "/products/#{@product.id}"
   end
+
+  def edit
+    @product = Product.find_by(id: params[:id])
+    render 'edit.html.erb'
+  end
+
+  def update
+    @product = Product.find_by(id: params[:id])
+    @product.name = params[:name]
+    @product.price = params[:price]
+    @product.description = params[:description]
+    @product.supplier_id = params[:supplier_id]
+    image = ImageUrl.find_by(product_id: @product.id)
+    image.url = params[:image_url]
+    @product.save!
+    image.save
+
+    redirect_to "/products/#{@product.id}"
+  end
+
+  def destroy
+    @product = Product.find_by(id: params[:id])
+    @product.destroy
+    redirect_to "/products"
+  end
+
 end
